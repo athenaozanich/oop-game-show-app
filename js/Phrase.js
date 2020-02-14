@@ -20,6 +20,7 @@ class Phrase {
   };
 
   checkLetter(clckdBtn){
+    
     clckdBtn.disabled = true;
     return (this.phrase.split("").includes(clckdBtn.innerHTML))?true:false;
   };
