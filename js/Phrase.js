@@ -19,11 +19,15 @@ class Phrase {
     // rollOut(letters.length, "animate-in");//Call for animation
   };
 
-  checkLetter(letter){
-    // (letter.includes(playerLetter))?true:false;
+  checkLetter(clckdBtn){
+    clckdBtn.disabled = true;
+    return (this.phrase.split("").includes(clckdBtn.innerHTML))?true:false;
   };
   
   showMatchedLetter(letter){
-    // letters[i].classList.add("show");
+    const mtchdLtrLst = document.querySelectorAll(`.${letter}`);
+    mtchdLtrLst.forEach(mtchdLtr => {
+      mtchdLtr.classList.add("show");
+    });
   };
 }

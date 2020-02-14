@@ -1,8 +1,14 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * app.js */
+const game = new Game();
 
 document.querySelector("#btn__reset").addEventListener("click", () => {//Start game with addEventListener() on start game button
-  const game = new Game();
   game.startGame();
+});
+
+qwerty.addEventListener("click", (e) => {//Use event delegation listen for button, then compare with phrase letters
+  if ( e.target.type === "submit" ){ 
+    game.handleInteraction(e.target);
+  }
 });
