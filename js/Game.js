@@ -19,14 +19,12 @@ class Game {
       { phrase: "Single serving friends"},
       { phrase: "Si vis pacem para bellum"}
     ];
-        
       return phrases;
   };
 
   getRandomPhrase() {
     let random = Math.floor(Math.random() * this.phrases.length);//Dynamic random based on the number of phrases in the array
     let randomPhrase = new Phrase(this.phrases[random]);
-    console.log(randomPhrase);
     return randomPhrase;
   };
 
