@@ -202,3 +202,59 @@ button {
 .lose a {
   color: var(--color-lose);
 }
+.animate-out {
+	animation: roll-out-right 1s ease-in-out 1s 1 both;
+}
+.animate-in {
+	animation: roll-in-left 1s ease-in-out 1s 1 both;
+}
+.slide-in-left {
+	animation: slide-in-left 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+.slide-out-right {
+  background-color: #3a3f58;
+	animation: slide-out-right 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@keyframes roll-in-left {
+  0% {
+    transform: translateX(-100vw) rotate(-540deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes roll-out-right {
+  0% {
+    transform: translateX(0px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw) rotate(540deg);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-100vw);
+    opacity: 0;
+  }
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+@keyframes slide-out-right {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+}

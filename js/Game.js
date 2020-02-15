@@ -25,23 +25,25 @@ class Game {
 
   getRandomPhrase() {
     let random = Math.floor(Math.random() * this.phrases.length);//Dynamic random based on the number of phrases in the array
-    this.activePhrase = new Phrase(this.phrases[random]);
-    
-    return this.activePhrase;
+    let randomPhrase = new Phrase(this.phrases[random]);
+    console.log(randomPhrase);
+    return randomPhrase;
   };
 
   startGame(){
     this.clearBoard();
-    this.getRandomPhrase().addPhraseToDisplay();
-    document.getElementById("overlay").style.display = "none";
+    this.activePhrase = this.getRandomPhrase();
+    this.activePhrase.addPhraseToDisplay();
   };
 
   handleInteraction(clckdBtn){
     if( this.activePhrase.checkLetter(clckdBtn) ){ 
+      clckdBtn.disabled = true;
       clckdBtn.classList = 'chosen';
       this.activePhrase.showMatchedLetter(clckdBtn.innerHTML);
-      this.checkForWin();
+      if( this.checkForWin() ) this.gameOver(true);
     }else{
+      clckdBtn.disabled = true;
       clckdBtn.classList = 'wrong';
       this.removeLife();
     }
@@ -51,9 +53,11 @@ class Game {
     const phrase = document.querySelectorAll('.letter');
     const guessed = document.querySelectorAll('.show');
     if( guessed.length === phrase.length ){
-      this.gameOver(true);
       this.wins++;
-    }    
+      return true;
+    }else{
+      return false;
+    }
   };
 
   removeLife() {
@@ -61,21 +65,26 @@ class Game {
       document.querySelectorAll('#scoreboard img')[this.missed].src = "images/lostHeart.png";
       this.missed++;
     }else{
-      this.overlay.style.display = "";
-      this.overlay.className = "lose";
-      document.querySelector('.title').innerHTML = `Great try!`;
-      document.getElementById('game-over-message').innerHTML = `You wanna give it another try?`;
+      this.gameOver(false);
+      this.activePhrase = null;
       this.losses++;
     }
   };
 
   gameOver(gameWon) {
     if( gameWon ){
-      this.overlay.style.display = "";
-      this.overlay.className = "win";
+      this.overlay.className = "start win slide-in-left";
       document.querySelector('.title').innerHTML = `Great job, you've won!`;
       document.getElementById('game-over-message').innerHTML = `You wanna give it another try?`;
-    } 
+      this.activePhrase = null;
+    }else{
+      this.overlay.className = "start lose slide-in-left";
+      document.querySelector('.title').innerHTML = `Great try!`;
+      document.getElementById('game-over-message').innerHTML = `You wanna give it another try?`;
+      this.activePhrase = null;
+    }
+    
+    
   };
 
   clearBoard(){//Clear phrase and reset board
@@ -95,6 +104,6 @@ class Game {
       if(i >= 0 && li[i]) li[i].remove();
       if(i > 0 && ul[i]) ul[i].remove();
     }
-    // overlay.className = "start slide-out-right";
+    this.overlay.classList = "slide-out-right";
   }
 }
