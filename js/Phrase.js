@@ -8,6 +8,7 @@ class Phrase {
   }
   addPhraseToDisplay = () => {//Pass in the splitPhrase
     let splitPhrase = this.phrase.split("");//Split and return phrase array
+    let filteredPhrase = splitPhrase.filter(letter => letter !== ' ');
     let word = 0;
     
     for (let i = 0; i < splitPhrase.length; i++) {//Loop through letters in phrase
@@ -16,14 +17,14 @@ class Phrase {
       (splitPhrase[i] != " ") ? (li.appendChild(document.createTextNode(splitPhrase[i])), li.classList.add(...defaultClasses))//Style the li
       :(li.classList.add("space"), document.getElementById("phrase").appendChild(document.createElement("UL")), word++);//Count words
     }
-    this.rollOut(splitPhrase.length, "animate-in");//Call for animation
+    this.rollOut(filteredPhrase.length, "animate-in");//Call for animation
   };
   
   rollOut = (i,direction) => {//Handle animations with delay (hoping to replace this with a sass function instead)
     let letters = document.querySelectorAll('.letter');
     setTimeout( () =>{//set .10s timeout between each execution of a loop
       (i < 0) ? null //if thruthy do nothing
-        :(i--, document.querySelectorAll(`.animate-in`) && direction === "animate-out") ?//if falsey decrement and run conditional
+        :( i--, document.querySelectorAll(`.animate-in`) && direction === "animate-out" ) ?//if falsey decrement and run conditional
           letters[i].className = letters[i].className.replace(/(?:^|\s)animate-in(?!\S)/g , ' animate-out')//if truthy swap classes
           : letters[i].classList.add(direction);//if falsey simply add the class
       if(i > 0) this.rollOut(i,direction);//If `i` is greater than `0` call rollOut() again passing in current values

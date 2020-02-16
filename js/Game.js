@@ -32,6 +32,7 @@ class Game {
     this.clearBoard();
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
+    this.overlay.classList = "slide-out-right";
   };
 
   handleInteraction(clckdBtn){
@@ -50,7 +51,9 @@ class Game {
   checkForWin(){
     const phrase = document.querySelectorAll('.letter');
     const guessed = document.querySelectorAll('.show');
+    
     if( guessed.length === phrase.length ){
+      this.activePhrase.rollOut(phrase.length, "animate-out");
       this.wins++;
       return true;
     }else{
@@ -71,14 +74,19 @@ class Game {
 
   gameOver(gameWon) {
     if( gameWon ){
-      this.overlay.className = "start win slide-in-left";
-      document.querySelector('.title').innerHTML = `Great job, you've won!`;
-      document.getElementById('game-over-message').innerHTML = `You wanna give it another try?`;
-      this.activePhrase = null;
+      setTimeout(() => {
+        //Send win state to reset
+        this.overlay.className = "start win slide-in-left";
+        document.querySelector('.title').innerHTML = `Great job, you've won!`;
+        document.getElementById('game-over-message').innerHTML = `You wanna give it another try?`;
+      }, 2000);
+    this.activePhrase = null;
     }else{
-      this.overlay.className = "start lose slide-in-left";
-      document.querySelector('.title').innerHTML = `Great try!`;
-      document.getElementById('game-over-message').innerHTML = `You wanna give it another try?`;
+      setTimeout(() => {
+        this.overlay.className = "start lose slide-in-left";
+        document.querySelector('.title').innerHTML = `Great try!`;
+        document.getElementById('game-over-message').innerHTML = `You wanna give it another try?`;
+      }, 2000);
       this.activePhrase = null;
     }
     
@@ -102,6 +110,5 @@ class Game {
       if(i >= 0 && li[i]) li[i].remove();
       if(i > 0 && ul[i]) ul[i].remove();
     }
-    this.overlay.classList = "slide-out-right";
   }
 }
