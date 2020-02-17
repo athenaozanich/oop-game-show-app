@@ -9,9 +9,9 @@ I have added some cool animations as follows:
 1.   Animation for the start screen overlay
 2.   Animation for the win and loss overlay
 3.   Added animations to each individual letter in the phrase
-    -   Set letters elements opacity to 0 on start
-    -   Set animation to change opacity
-    -   Set animation for both starting and ending the game
-    -   Use Js to add the animations classes dynamically with a delay between each letter
+        -   Set letters elements opacity to 0 on start
+        -   Set animation to change opacity
+        -   Set animation for both starting and ending the game
+        -   Use Js to add the animations classes dynamically with a delay between each letter
 4.   Changed overflow to hidden
 5.   Add transition to phrase letters on reveal
