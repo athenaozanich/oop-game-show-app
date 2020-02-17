@@ -29,6 +29,7 @@ body {
   display: flex;
   height: 100vh;
   overflow: hidden;
+  user-select: none;
 }
 
 li, ol, ul {
