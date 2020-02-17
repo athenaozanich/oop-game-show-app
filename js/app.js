@@ -21,7 +21,10 @@ document.addEventListener('keyup', (e) => {
   }
   buttons.forEach(button => {
     if(e.key === button.innerHTML){
-      game.handleInteraction(button);
+      if (button.disabled === false) {
+        game.handleInteraction(button);
+        
+      }
     }
   });
 });

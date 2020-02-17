@@ -30,6 +30,7 @@ class Game {
 
   startGame(){
     this.clearBoard();
+    console.log(this.wins);
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
     this.overlay.classList = "slide-out-right";
@@ -54,13 +55,16 @@ class Game {
     
     if( guessed.length === phrase.length ){
       this.activePhrase.rollOut(phrase.length, "animate-out");
-      this.wins++;
       return true;
     }else{
       return false;
     }
   };
-
+  calcScore(){
+    if( this.checkForWin() ){
+      
+    }
+  }
   removeLife() {
     if( this.missed < 4 ){
       document.querySelectorAll('#scoreboard img')[this.missed].src = "images/lostHeart.png";
@@ -68,7 +72,6 @@ class Game {
     }else{
       this.gameOver(false);
       this.activePhrase = null;
-      this.losses++;
     }
   };
 
@@ -81,6 +84,7 @@ class Game {
         document.getElementById('game-over-message').innerHTML = `You wanna give it another try?`;
       }, 2000);
     this.activePhrase = null;
+    return this.wins++;
     }else{
       setTimeout(() => {
         this.overlay.className = "start lose slide-in-left";
@@ -88,6 +92,7 @@ class Game {
         document.getElementById('game-over-message').innerHTML = `You wanna give it another try?`;
       }, 2000);
       this.activePhrase = null;
+      return this.losses++;
     }
     
     

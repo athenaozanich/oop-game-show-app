@@ -5,12 +5,12 @@ class Phrase {
   constructor(phrase){
     this.phrase = phrase.phrase.toLowerCase();
     this.rollOut = this.rollOut.bind(this);
+    this.wins = 0;
   }
   addPhraseToDisplay = () => {//Pass in the splitPhrase
     let splitPhrase = this.phrase.split("");//Split and return phrase array
     let filteredPhrase = splitPhrase.filter(letter => letter !== ' ');
     let word = 0;
-    
     for (let i = 0; i < splitPhrase.length; i++) {//Loop through letters in phrase
       let defaultClasses = ["hide","letter", `${splitPhrase[i]}`];
       let li = document.getElementById("phrase").children[word].appendChild(document.createElement("LI"));
