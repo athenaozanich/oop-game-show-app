@@ -4,15 +4,16 @@
 /* Variables */
 
 :root {
-  --color-win: #78CF82;
-  --color-lose: #D94545;
+  --color-win: #2e4c3a;
+  --color-lose: #3a3f58;
   --color-start: #5b85b7;
   --color-neutral: #445069;
   --color-neutral-light: #D2D2D2;
   --color-keys: #37474F;
   --color-keys-light: #E5E5E5;
   --font-size-large: 60px;
-  --font-size-medium: 20px;
+  --font-size-medium: 40px;
+  --font-size-small: 20px;
   --transition: all .2s ease-in-out;
 }
 
@@ -30,17 +31,19 @@ body {
   height: 100vh;
   overflow: hidden;
   user-select: none;
+  background-color:#2c2c31;
 }
 
 li, ol, ul {
   padding: 0;
   display: inline-block;
+  margin: 0px 1px;
 }
 
 h2 {
   margin: 0;
   text-transform: uppercase;
-  font-size: var(--font-size-large);
+  font-size: var(--font-size-medium);
   margin: 0;
 }
 
@@ -51,9 +54,9 @@ h1 {
 button {
   margin: 6px;
   border: 1px solid transparent;
-  padding: .5rem 1rem;
+  padding: 1.5% 2%;
   color: var(--color-keys);
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-small);
   background-color: var(--color-keys-light);
   border-radius: 5px;
   -webkit-transition: var(--transition);
@@ -95,10 +98,10 @@ button {
 /* Phrase */
 
 .letter {
-  font-size: var(--font-size-medium);
-  height: 65px;
-  width: 65px;
-  padding: 20px 1px 0 1px;
+  font-size: var(--font-size-small);
+  height: 40px;
+  width: 40px;
+  padding: 10px 1px 0 1px;
   margin-right: 2px;
   color: transparent;
   background: var(--color-neutral-light);
@@ -114,11 +117,7 @@ button {
 
 .show {
   color: #fff;
-  background-color: #4ac0d5;
-  font-size: 20px;
-  height: 65px;
-  width: 65px;
-  padding: 20px 1px 0 1px;
+  background-color: #30717d;
   margin-right: 2px;
   border-radius: 5px;
   -webkit-animation-duration: .5s;
@@ -135,14 +134,14 @@ button {
 }
 
 .chosen {
-  background: #3a3f58;
+  background: #2e4c3a;
   border-radius: 5px;
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-small);
   color: #FFFFFF;
 }
 
 .wrong {
-  background: #f7a964;
+  background: #3a3f58;
   color: #FFFFFF;
 }
 
@@ -201,7 +200,7 @@ button {
 }
 
 .lose {
-  background-color: #f5785f;
+  background-color:var(--color-lose);
 }
 
 .lose a {
@@ -261,5 +260,17 @@ button {
   100% {
     transform: translateX(100vw);
     opacity: 0;
+  }
+}
+@media only screen and (min-width:750px){
+  h2{
+    font-size: var(--font-size-large);
+  }
+  .letter{
+    height: 65px;
+    width: 65px;
+  }
+  button{
+    padding: 10px 20px;
   }
 }
