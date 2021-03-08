@@ -84,7 +84,6 @@ class Game {
         document.getElementById('game-over-message').innerHTML = `You wanna give it another try?`;
       }, 2000);
     this.activePhrase = null;
-    return this.wins++;
     }else{
       setTimeout(() => {
         this.overlay.className = "start lose slide-in-left";
@@ -92,7 +91,6 @@ class Game {
         document.getElementById('game-over-message').innerHTML = `You wanna give it another try?`;
       }, 2000);
       this.activePhrase = null;
-      return this.losses++;
     }
     
     
